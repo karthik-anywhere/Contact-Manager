@@ -1,0 +1,17 @@
+runtime: java8
+inbound_services:
+- warmup
+derived_file_type:
+- java_precompiled
+threadsafe: True
+auto_id_policy: default
+beta_settings:
+  'source_reference': 'https://github.com/karthikkumar19/hello.git#59b7a3d84d309cc6e84551b5dc8ea0d60220a17b'
+api_version: 'user_defined'
+handlers:
+- url: /.*
+  script: unused
+  login: optional
+  secure: optional
+
+skip_files: app.yaml
