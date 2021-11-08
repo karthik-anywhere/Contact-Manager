@@ -2,6 +2,7 @@ package com.example.contactmanager.contact;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.contactmanager.contact.filters.AuthFilter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,7 +20,7 @@ import com.example.contactmanager.store.Contact;
 import com.example.contactmanager.store.ContactStore;
 import com.example.contactmanager.store.Store;
 
-@WebServlet("/contacts")
+@WebServlet("/contacts/*")
 public class ContactManipulationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -60,23 +62,23 @@ public class ContactManipulationServlet extends HttpServlet {
 			if (contactObj.getFirstName().length() > 1 && contactObj.getLastName().length() > 1
 					&& !key.equals("/contacts")) {
 				Store contact = new ContactStore();
-				String resId = contact.updateContactInStore(key, contactObj);
-				jsonData.put("id", resId);
+				out.println(contact.updateContactInStore(key, contactObj));
 			} else {
 				response.setStatus(400);
 				jsonData.put("error code", 400);
 				jsonData.put("error message", "invalid firstname / lastname");
+				out.println(jsonData);
 			}
 		} catch (JSONException e) {
 			RequestDispatcher rd = request.getRequestDispatcher("ErrorHandlerServlet");
 			rd.forward(request, response);
 		}
-		out.println(jsonData);
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
 		String reqId = request.getRequestURI().replace("/contacts/", "");
 		ContactStore contact = new ContactStore();
 		try {

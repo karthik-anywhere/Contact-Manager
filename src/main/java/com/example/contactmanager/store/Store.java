@@ -1,15 +1,13 @@
 package com.example.contactmanager.store;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 
-import com.google.appengine.api.datastore.*;
-
-
-import com.google.cloud.datastore.Datastore;
-import com.google.cloud.datastore.DatastoreOptions;
+import com.google.cloud.datastore.*;
+import com.google.common.collect.Lists;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,9 +19,9 @@ public abstract class Store {
 
 	protected HashMap<String, Contact> contactMap = hs.getMap();
 //	protected DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-//static Datastore datastore = DatastoreOptions.newBuilder().setProjectId("karthik-intern").build().getService();
+static Datastore datastore = DatastoreOptions.newBuilder().setProjectId("karthik-intern").build().getService();
 //	protected Entity e = new Entity("Contact");
-	protected Query q = new Query("Contact");
+//	protected Query q = new Query("Contact");
 	public static String generateID() {
 		UUID uuid = UUID.randomUUID();
 		String uuidAsString = uuid.toString();
@@ -31,15 +29,23 @@ public abstract class Store {
 	}
 
 	public List<Entity> getContactsFromStore() {
-
-		PreparedQuery pq = datastore.prepare(q);
-		return pq.asList(FetchOptions.Builder.withDefaults());
+		Query<Entity> query = Query.newEntityQueryBuilder()
+				.setKind("Contact")
+				.build();
+		QueryResults<Entity> contacts = datastore.run(query);
+		ArrayList<Entity> allContact = Lists.newArrayList(contacts);
+//		PreparedQuery pq = datastore.prepare(q);
+//		return pq.asList(FetchOptions.Builder.withDefaults());
+		return allContact;
 	}
 
 	public Entity getContactsFromStore(String id) {
-		q.setFilter(new Query.FilterPredicate("contactId", Query.FilterOperator.EQUAL,id));
-		PreparedQuery pq = ds.prepare(q);
-		return pq.asSingleEntity();
+		Key contactKey = datastore.newKeyFactory().setKind("Contact").newKey(id);
+		Entity contacts = datastore.get(contactKey);
+//		q.setFilter(new Query.FilterPredicate("contactId", Query.FilterOperator.EQUAL,id));
+//		PreparedQuery pq = ds.prepare(q);
+//		return pq.asSingleEntity();
+		return  contacts;
 	}
 
 	// for test case , this method is overloaded by id
@@ -47,15 +53,15 @@ public abstract class Store {
 
 	public abstract String storeContactInStore(String firstName, String lastName, String email);
 
-	public abstract String updateContactInStore(String key, Contact contactobj);
+	public abstract Object updateContactInStore(String key, Contact contactobj);
 
-	public abstract List<Entity> searchByFirstName(String firstName);
+	public abstract ArrayList<Entity> searchByFirstName(String firstName);
 
-	public abstract List<Entity> searchBylastName(String lastName);
+	public abstract ArrayList<Entity> searchBylastName(String lastName);
 
-	public abstract List<Entity> searchByEmail(String email);
+	public abstract ArrayList<Entity> searchByEmail(String email);
 
-	public abstract List<Entity> searchByALL(String firstName, String lastName, String email);
+	public abstract ArrayList<Entity> searchByALL(String firstName, String lastName, String email);
 
 	public abstract JSONObject deleteContactById(String id) throws JSONException;
 }

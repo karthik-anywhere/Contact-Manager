@@ -1,6 +1,5 @@
 com/example/contactmanager/auth/Login.class
 com/example/contactmanager/contact/filters/FilterLogger.class
-com/example/contactmanager/HelloAppEngine.class
 com/example/contactmanager/store/ContactStore.class
 com/example/contactmanager/store/hashstorage/HashStorage.class
 com/example/contactmanager/error/ErrorServlet.class
@@ -8,8 +7,10 @@ com/example/contactmanager/store/Contact.class
 com/example/contactmanager/auth/LoginInputValidation.class
 com/example/contactmanager/error/ErrorHandlerServlet.class
 com/example/contactmanager/auth/LoginServlet.class
+com/example/contactmanager/server/ServerMain.class
 com/example/contactmanager/contact/filters/AuthFilter.class
 com/example/contactmanager/contact/ContactManipulationServlet.class
 com/example/contactmanager/store/Store.class
 com/example/contactmanager/contact/AddContactServlet.class
 com/example/contactmanager/contact/ContactSearch.class
+com/example/contactmanager/Main.class
