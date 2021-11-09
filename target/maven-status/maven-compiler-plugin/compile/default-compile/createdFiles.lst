@@ -1,8 +1,10 @@
+com/example/contactmanager/store/ContactHashStore.class
 com/example/contactmanager/auth/Login.class
 com/example/contactmanager/contact/filters/FilterLogger.class
-com/example/contactmanager/store/ContactStore.class
 com/example/contactmanager/store/hashstorage/HashStorage.class
+com/example/contactmanager/store/AbstractContactStore.class
 com/example/contactmanager/error/ErrorServlet.class
+com/example/contactmanager/store/ContactDataStore.class
 com/example/contactmanager/store/Contact.class
 com/example/contactmanager/auth/LoginInputValidation.class
 com/example/contactmanager/error/ErrorHandlerServlet.class

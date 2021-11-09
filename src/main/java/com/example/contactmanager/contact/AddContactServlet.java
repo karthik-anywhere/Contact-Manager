@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.contactmanager.store.ContactDataStore;
+import com.example.contactmanager.store.ContactHashStore;
+import com.example.contactmanager.store.Store;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
 import com.example.contactmanager.store.Contact;
-import com.example.contactmanager.store.ContactStore;
 
 @WebServlet("/add-contact")
 public class AddContactServlet extends HttpServlet {
@@ -30,7 +32,7 @@ public class AddContactServlet extends HttpServlet {
 		Contact c = new Gson().fromJson(request.getReader(), Contact.class);
 		try {
 			if (c.getFirstName().length() > 1 && c.getLastName().length() > 1) {
-				ContactStore contact = new ContactStore();
+			Store contact = new ContactDataStore();
 				String resId = contact.storeContactInStore(c.getFirstName(), c.getLastName(), c.getEmail());
 				jsonData.put("id", resId);
 			} else {

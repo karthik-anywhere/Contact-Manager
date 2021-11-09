@@ -1,5 +1,6 @@
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/error/ErrorServlet.java
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/store/Store.java
+/Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/store/AbstractContactStore.java
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/server/ServerMain.java
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/contact/filters/FilterLogger.java
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/contact/ContactSearch.java
@@ -7,8 +8,9 @@
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/contact/filters/AuthFilter.java
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/auth/LoginInputValidation.java
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/contact/ContactManipulationServlet.java
-/Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/store/ContactStore.java
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/contact/AddContactServlet.java
+/Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/store/ContactDataStore.java
+/Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/store/ContactHashStore.java
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/error/ErrorHandlerServlet.java
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/auth/Login.java
 /Users/m.karthikkumar/contactmanager/src/main/java/com/example/contactmanager/auth/LoginServlet.java

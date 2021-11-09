@@ -2,7 +2,6 @@ package com.example.contactmanager.contact;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,13 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.contactmanager.contact.filters.AuthFilter;
+import com.example.contactmanager.store.ContactDataStore;
+import com.example.contactmanager.store.ContactHashStore;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
 import com.example.contactmanager.store.Contact;
-import com.example.contactmanager.store.ContactStore;
 import com.example.contactmanager.store.Store;
 
 @WebServlet("/contacts/*")
@@ -61,7 +60,7 @@ public class ContactManipulationServlet extends HttpServlet {
 		try {
 			if (contactObj.getFirstName().length() > 1 && contactObj.getLastName().length() > 1
 					&& !key.equals("/contacts")) {
-				Store contact = new ContactStore();
+				Store contact = new ContactDataStore();
 				out.println(contact.updateContactInStore(key, contactObj));
 			} else {
 				response.setStatus(400);
@@ -80,7 +79,7 @@ public class ContactManipulationServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		String reqId = request.getRequestURI().replace("/contacts/", "");
-		ContactStore contact = new ContactStore();
+		Store contact = new ContactDataStore();
 		try {
 			out.println(contact.deleteContactById(reqId));
 		} catch (JSONException e) {

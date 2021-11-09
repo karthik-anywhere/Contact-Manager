@@ -1,12 +1,14 @@
 package com.example.contactmanager.contact;
 
+import com.example.contactmanager.store.ContactDataStore;
+import com.example.contactmanager.store.ContactHashStore;
+import com.example.contactmanager.store.Store;
 import com.google.gson.Gson;
-import com.example.contactmanager.store.ContactStore;
 
 public class ContactSearch {
 
 	Gson gson = new Gson();
-	ContactStore contact = new ContactStore();
+	Store contact = new ContactDataStore();
 
 	public String getDataFromStore(String firstName, String lastName, String email) {
 
@@ -15,7 +17,7 @@ public class ContactSearch {
 		} else if (firstName != null) {
 			return gson.toJson(contact.searchByFirstName(firstName));
 		} else if (lastName != null) {
-			return gson.toJson(contact.searchBylastName(lastName));
+			return gson.toJson(contact.searchByLastName(lastName));
 		} else if (email != null) {
 			return gson.toJson(contact.searchByEmail(email));
 		} else {

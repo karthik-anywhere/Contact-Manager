@@ -3,7 +3,7 @@ package com.example.contactmanager.auth;
 public class Login {
 	private String userName, passWord;
 
-	Login(String name, String pass) {
+	public Login(String name, String pass) {
 		userName = name;
 		passWord = pass;
 	}
